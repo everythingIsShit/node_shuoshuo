@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="lei">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>用户注册</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/offcanvas.css" rel="stylesheet">
+  </head>
+  <body>
+  	<% include header.ejs%>
+  	<div class="container">
+  		<form class="form-horizontal" id='register-form'>
+			  <div class="form-group">
+			    <label for="uname" class="col-sm-2 control-label">用戶名</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" id="uname" placeholder="请输入您的用户名">
+			    </div>
+			    <div class="help-block col-sm-2"></div>
+			  </div>
+			  <div class="form-group">
+			    <label for="upwd1" class="col-sm-2 control-label">密码</label>
+			    <div class="col-sm-8">
+			      <input type="password" class="form-control" id="upwd1" placeholder="请输入您的密码，至少6位">
+			    </div>
+			    <div class="help-block col-sm-2"></div>
+			  </div>
+			  <div class="form-group">
+			    <label for="upwd2" class="col-sm-2 control-label">重复密码</label>
+			    <div class="col-sm-8">
+			      <input type="password" class="form-control" id="upwd2" placeholder="请重复您的密码">
+			    </div>
+			    <div class="help-block col-sm-2"></div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <div class="checkbox">
+			      	<a href="/userAgreement">请阅读《用户协议》</a> <br/>
+			        <label>
+			          <input type="checkbox" id='userAgreement'> 我同意
+			        </label>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <button type="button" class="btn btn-success" id='register' disabled="true">注册</button>
+			    </div>
+			  </div>
+		</form>
+  	</div>
+  	
+	 <!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/js/jQuery-2.2.0.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$('#userAgreement').change(function(){
+		$('#register').attr('disabled',$('#register').attr('disabled')=='disabled'?false:true);
+	});
+	
+	Date.prototype.toLocaleString = function() {
+        return this.getFullYear() + "/" + (this.getMonth() + 1) + "/" + this.getDate() + "/ " + this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds();
+    };
+		
+	$('#register').click(function(){
+		$('.help-block').html('');
+		var reg1=/^[a-zA-Z0-9]{6,}$/;
+		var reg2=/[a-zA-Z]{1,}/;
+		var uname=$('#uname').val();
+		var upwd1=$('#upwd1').val();
+		var upwd2=$('#upwd2').val();
+		if(!(reg1.test(uname)&&reg2.test(uname))){
+			$('#uname').parent().parent().children('.help-block').html('用户名可以为字母和数字，至少包含一位字母，长度至少为6位！');
+			return;
+		}
+		if(upwd1.length<6){
+			$('#upwd1').parent().parent().children('.help-block').html('密码长度至少6位');
+			return;
+		}
+		if(upwd1!=upwd2){
+			$('#upwd2').parent().parent().children('.help-block').html('两次密码必须相同');
+			return;
+		}
+		var data={
+			'uname':uname,
+			'upwd':upwd1,
+			'time':new Date().toLocaleString()
+		}
+		$.post('/doRegister',data,function(result){
+			if(result.result==-1){
+				$('#uname').parent().parent().children('.help-block').html('用户名已经被占用啦！');
+				return;
+			}
+			alert('注册成功！点击确定返回首页');
+			window.location='/';
+		});
+	});
+	</script>
+  </body>
+</html>
