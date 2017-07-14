@@ -178,3 +178,15 @@ exports.postMessage=function(req,res){
     	});
     });
 }
+
+exports.getAllMessage=function(req,res){
+	var page=req.query.page;
+	var pageCount=2;
+	db.find('message',{},{'sort':{'dateTime':-1},'page':page,'pageCount':pageCount},function(err,result){
+		if(err){
+			res.send({'msg':-1});
+			return;
+		}
+		res.send({'msg':result});
+	})
+}

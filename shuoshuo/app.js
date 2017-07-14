@@ -5,7 +5,7 @@
 
 var express = require('express');
 var router = require('./routes/router.js');
-var session = require('express-session')
+var session = require('express-session');
 
 var app = express();
 app.use(session({
@@ -40,5 +40,7 @@ app.get('/cut',router.cut);
 app.get('/docut',router.docut);
 
 app.post('/postMessage',router.postMessage);
+
+app.get('/allMessage',router.getAllMessage);
 
 app.listen(3000);

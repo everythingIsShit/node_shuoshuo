@@ -95,59 +95,12 @@
 						<%}%>
 					</div>
 
-					<div class="row">
-						<div class="col-xs-6 col-lg-4">
-							<h2>Heading</h2>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							<p>
-								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
-							</p>
-						</div>
-						<!--/.col-xs-6.col-lg-4-->
-						<div class="col-xs-6 col-lg-4">
-							<h2>Heading</h2>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							<p>
-								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
-							</p>
-						</div>
-						<!--/.col-xs-6.col-lg-4-->
-						<div class="col-xs-6 col-lg-4">
-							<h2>Heading</h2>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							<p>
-								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
-							</p>
-						</div>
-						<!--/.col-xs-6.col-lg-4-->
-						<div class="col-xs-6 col-lg-4">
-							<h2>Heading</h2>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							<p>
-								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
-							</p>
-						</div>
-						<!--/.col-xs-6.col-lg-4-->
-						<div class="col-xs-6 col-lg-4">
-							<h2>Heading</h2>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							<p>
-								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
-							</p>
-						</div>
-						<!--/.col-xs-6.col-lg-4-->
-						<div class="col-xs-6 col-lg-4">
-							<h2>Heading</h2>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							<p>
-								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
-							</p>
-						</div>
-						<!--/.col-xs-6.col-lg-4-->
+					<div class="row" id='allMessage'>
+						
 					</div>
 					<!--/row-->
 				</div>
-				<!--/.col-xs-12.col-sm-9-->
+				<!--/.col-xs-12-->
 
 			</div>
 			<!--/.container-->
@@ -156,11 +109,27 @@
     ================================================== -->
 			<!-- Placed at the end of the document so the pages load faster -->
 			<script src="/js/jQuery-2.2.0.min.js"></script>
-			<script>
-				window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+			<script src='/js/underscore-noflect.js'></script>
+			<script type="text/template" id='temp'>
+				<div class="col-xs-6 col-lg-4">
+					<h2>{{=name}}</h2>
+					<p>{{=message}}</p>
+					<p>
+						<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
+					</p>
+				</div>
 			</script>
 			<script src="/js/bootstrap.min.js"></script>
 			<script>
+				var $allMessage=$('#allMessage');
+				var compiled=_.template($('#temp').html());
+				getPage(0);
+				function getPage(page){
+					$.get('/allMessage?'+page,function(result){
+						console.log(result);
+					})
+				}
+				
 				$('#login').click(function() {
 					$('.help-block').html('');
 					var uname = $('#uname').val();
@@ -190,23 +159,26 @@
 						window.location = '/';
 					});
 				});
-					
+
 				//发表说说
-				$('#postMessage').click(function(){
-					var message=$('#message').val();
-					var dateTime=new Date().getTime();
-					var reg=/^\s+$/g;
-					if(message.length == 0 ||(reg.test(message))){
+				$('#postMessage').click(function() {
+					var message = $('#message').val();
+					var dateTime = new Date().getTime();
+					var reg = /^\s+$/g;
+					if(message.length == 0 || (reg.test(message))) {
 						alert('内容不能为空');
 						return;
 					}
-					$.post('/postMessage',{'message':message,'dateTime':dateTime},function(result){
-						if(result.msg==1){
+					$.post('/postMessage', {
+						'message': message,
+						'dateTime': dateTime
+					}, function(result) {
+						if(result.msg == 1) {
 							$('#message').val('');
-						}else{
+						} else {
 							console.log('shibai');
 						}
-						
+
 					})
 				})
 			</script>
