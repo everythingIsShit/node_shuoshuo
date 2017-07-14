@@ -16,6 +16,12 @@ function _connectDB(callback) {
         callback(err, db);
     });
 }
+creatIndex('user');
+function creatIndex(collectionName){
+	_connectDB(function(err,db){
+		db.collection(collectionName).ensureIndex({name: 1}, {unique: true});
+	});
+}
 
 //插入数据
 exports.insertOne=function(collectionName,json,callback){

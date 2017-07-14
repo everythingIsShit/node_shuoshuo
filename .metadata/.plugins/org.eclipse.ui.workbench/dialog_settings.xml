@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="com.pandora.ui.QuickAccess">
+		<item value="70" key="com.pandora.quicksearch.ui.QuickSearchDialogDIALOG_HEIGHT"/>
+		<item value="458" key="com.pandora.quicksearch.ui.QuickSearchDialogDIALOG_WIDTH"/>
+		<list key="orderedProviders">
+		</list>
+		<list key="textArray">
+		</list>
+		<list key="orderedElements">
+		</list>
+		<list key="textEntries">
+		</list>
+	</section>
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item value="-270" key="DIALOG_Y_ORIGIN"/>
+		<item value="95" key="DIALOG_X_ORIGIN"/>
+	</section>
+	<section name="NewWizardAction">
+		<item value="com.pandora.projects.ui.files.wizards.NewVueWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="com.pandora.projects.ui"/>
+			<item value="org.nodeclipse.ui.wizards.category"/>
+		</list>
+	</section>
+	<section name="ImportExportAction">
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+		</list>
+	</section>
+</section>

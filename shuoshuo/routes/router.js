@@ -160,3 +160,21 @@ exports.docut=function(req,res){
             
     });
 }
+
+exports.postMessage=function(req,res){
+	var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+    	var message=fields.message;
+    	var dateTime=fields.dateTime;
+    	var uname=req.session.uname;
+    	db.insertOne('message',{'uname':uname,'dateTime':dateTime,'message':message},function(err,result){
+    		if(err){
+    			res.send({'msg':-1});
+    			return;
+    		}
+    		else{
+    			res.send({'msg':1});
+    		}
+    	});
+    });
+}

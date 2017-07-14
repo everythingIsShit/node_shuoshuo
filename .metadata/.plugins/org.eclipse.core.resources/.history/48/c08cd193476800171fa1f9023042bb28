@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="../../favicon.ico">
+
+		<title>新浪微博</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="/css/offcanvas.css" rel="stylesheet">
+
+		<style>
+			.jumbotron h1 {
+				height: 100px;
+			}
+			
+			.jumbotron h1 img {
+				max-height: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<% include header.ejs%>
+		<div class="container">
+
+			<div class="row row-offcanvas row-offcanvas-right">
+
+				<div class="col-xs-12">
+					<div class="jumbotron">
+						<%if(login){%>
+						<div class="row">
+							<div class='col-xs-2'>
+								<img src="/avatar/<%=avatar%>" / class='img-rounded' style='max-width: 100%;'>
+							</div>
+							<form class='col-xs-9 col-xs-offset-1'>
+								<div style='font-weight: bold;font-size: 16px;'>
+									<%=uname%>
+								</div>
+								<div class="form-group">
+									<textarea class="form-control" rows="3" placeholder="想说点什么呢。。。"></textarea>
+								</div>
+								<div class="form-group">
+									<input type="button" value='发表' id='postMessage' class='btn btn-success' />
+								</div>
+							</form>
+						</div>
+
+						<%}else{%>
+						<div class="row">
+							<div class="col-lg-6 col-xs-6">
+								<h1>
+            						Message
+            					</h1>
+								<p>This is good place to show your feelings.</p>
+							</div>
+
+							<div class="col-lg-6 col-xs-6">
+								<form class="form-horizontal" id='login-form' style='padding-top:30px;'>
+									<div class="form-group">
+										<label for="uname" class="col-sm-2 control-label">用戶名</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="uname" placeholder="请输入您的用户名">
+										</div>
+										<div class="help-block col-sm-2"></div>
+									</div>
+									<div class="form-group">
+										<label for="upwd1" class="col-sm-2 control-label">密码</label>
+										<div class="col-sm-8">
+											<input type="password" class="form-control" id="upwd" placeholder="请输入您的密码">
+										</div>
+										<div class="help-block col-sm-2"></div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<button type="button" class="btn btn-success" id='login'>登录</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<%}%>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-6 col-lg-4">
+							<h2>Heading</h2>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							<p>
+								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
+							</p>
+						</div>
+						<!--/.col-xs-6.col-lg-4-->
+						<div class="col-xs-6 col-lg-4">
+							<h2>Heading</h2>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							<p>
+								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
+							</p>
+						</div>
+						<!--/.col-xs-6.col-lg-4-->
+						<div class="col-xs-6 col-lg-4">
+							<h2>Heading</h2>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							<p>
+								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
+							</p>
+						</div>
+						<!--/.col-xs-6.col-lg-4-->
+						<div class="col-xs-6 col-lg-4">
+							<h2>Heading</h2>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							<p>
+								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
+							</p>
+						</div>
+						<!--/.col-xs-6.col-lg-4-->
+						<div class="col-xs-6 col-lg-4">
+							<h2>Heading</h2>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							<p>
+								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
+							</p>
+						</div>
+						<!--/.col-xs-6.col-lg-4-->
+						<div class="col-xs-6 col-lg-4">
+							<h2>Heading</h2>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							<p>
+								<a class="btn btn-default" href="#" role="button">View details &raquo;</a>
+							</p>
+						</div>
+						<!--/.col-xs-6.col-lg-4-->
+					</div>
+					<!--/row-->
+				</div>
+				<!--/.col-xs-12.col-sm-9-->
+
+			</div>
+			<!--/.container-->
+
+			<!-- Bootstrap core JavaScript
+    ================================================== -->
+			<!-- Placed at the end of the document so the pages load faster -->
+			<script src="/js/jQuery-2.2.0.min.js"></script>
+			<script>
+				window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+			</script>
+			<script src="/js/bootstrap.min.js"></script>
+			<script>
+				$('#login').click(function() {
+					$('.help-block').html('');
+					var uname = $('#uname').val();
+					var upwd = $('#upwd').val();
+					if(!uname) {
+						$('#uname').parent().parent().children('.help-block').html('请填写用户名！');
+						return;
+					} else if(!upwd) {
+						$('#upwd').parent().parent().children('.help-block').html('请输入您的密码！');
+						return;
+					}
+					var data = {
+						'uname': uname,
+						'upwd': upwd,
+					}
+					$.post('/doLogin', data, function(result) {
+						console.log(result);
+						if(result.result == -1) {
+							$('#uname').parent().parent().children('.help-block').html('该用户尚未注册！');
+							return;
+						}
+						if(result.result == -2) {
+							$('#upwd').parent().parent().children('.help-block').html('密码输入错误！');
+							return;
+						}
+
+						window.location = '/';
+					});
+				});
+			</script>
+	</body>
+
+</html>

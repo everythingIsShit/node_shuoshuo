@@ -39,4 +39,6 @@ app.get('/cut',router.cut);
 
 app.get('/docut',router.docut);
 
+app.post('/postMessage',router.postMessage);
+
 app.listen(3000);
